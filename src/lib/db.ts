@@ -1,9 +1,13 @@
 import { neon } from "@neondatabase/serverless";
 
-const databaseUrl = process.env.DATABASE_URL;
+export function getDatabase() {
+  const databaseUrl = process.env.DATABASE_URL;
 
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL environment değişkeni bulunamadı.");
+  if (!databaseUrl) {
+    throw new Error(
+      "DATABASE_URL environment değişkeni bulunamadı.",
+    );
+  }
+
+  return neon(databaseUrl);
 }
-
-export const sql = neon(databaseUrl);
